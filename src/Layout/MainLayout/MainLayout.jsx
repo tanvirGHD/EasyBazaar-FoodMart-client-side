@@ -10,7 +10,9 @@ const MainLayout = () => {
             <div className="h-screen">
             <Outlet></Outlet>
             </div>
+            <div className="mt-36">
             <Footer></Footer>
+            </div>
         </div>
     );
 };
