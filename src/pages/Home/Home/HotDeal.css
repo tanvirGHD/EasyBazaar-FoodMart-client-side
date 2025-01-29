@@ -1,0 +1,8 @@
+.hotDeal-item {
+    background-image: url('../../../assets/hotdeal.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 400px;
+    width: 100%;
+}
