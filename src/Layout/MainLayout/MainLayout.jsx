@@ -1,19 +1,19 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../../components/common/Navbar";
-// import Footer from "../../components/common/Footer";
+import Footer from "../../components/common/Footer";
 
 
 const MainLayout = () => {
     return (
-        <div>
+        <>
             <Navbar></Navbar>
-            <div className="h-screen">
+            <div className="">
             <Outlet></Outlet>
             </div>
-            {/* <div className="mt-36">
+            <div className="mt-36">
             <Footer></Footer>
-            </div> */}
-        </div>
+            </div>
+        </>
     );
 };
 

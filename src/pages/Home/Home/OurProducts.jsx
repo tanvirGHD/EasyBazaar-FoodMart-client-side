@@ -23,10 +23,24 @@ const TrendingProducts = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // Show 3 items at a time
+    slidesToShow: 3, // Default: Show 3 items at a time
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 1024, // For medium-sized devices (tablets)
+        settings: {
+          slidesToShow: 2, // Show 2 items on tablets
+        },
+      },
+      {
+        breakpoint: 640, // For mobile devices
+        settings: {
+          slidesToShow: 1, // Show 1 item on mobile
+        },
+      },
+    ],
   };
 
   return (

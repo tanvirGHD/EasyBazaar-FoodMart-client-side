@@ -40,23 +40,23 @@ const HotDeal = () => {
   }, []);
 
   return (
-    <div className="hotDeal-item text-white p-10 mb-20 bg-yellow-500 flex flex-col items-center justify-center">
-      <h2 className="text-3xl font-bold mb-5">🔥 Limited Time Hot Deal! 🔥</h2>
-      <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
+    <div className="hotDeal-item text-white p-4 md:p-10 mb-10 md:mb-20 bg-yellow-500 flex flex-col items-center justify-center">
+      <h2 className="text-2xl md:text-3xl font-bold mb-5 text-center">🔥 Limited Time Hot Deal! 🔥</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5 text-center">
         <div className="flex flex-col p-4 bg-yellow-500 text-white rounded-lg">
-          <span className="countdown font-mono text-5xl">{time.days}</span>
+          <span className="countdown font-mono text-3xl sm:text-5xl">{time.days}</span>
           <span>Days</span>
         </div>
         <div className="flex flex-col p-4 bg-yellow-500 text-white rounded-lg">
-          <span className="countdown font-mono text-5xl">{time.hours}</span>
+          <span className="countdown font-mono text-3xl sm:text-5xl">{time.hours}</span>
           <span>Hours</span>
         </div>
         <div className="flex flex-col p-4 bg-yellow-500 text-white rounded-lg">
-          <span className="countdown font-mono text-5xl">{time.minutes}</span>
+          <span className="countdown font-mono text-3xl sm:text-5xl">{time.minutes}</span>
           <span>Minutes</span>
         </div>
         <div className="flex flex-col p-4 bg-yellow-500 text-white rounded-lg">
-          <span className="countdown font-mono text-5xl">{time.seconds}</span>
+          <span className="countdown font-mono text-3xl sm:text-5xl">{time.seconds}</span>
           <span>Seconds</span>
         </div>
       </div>
