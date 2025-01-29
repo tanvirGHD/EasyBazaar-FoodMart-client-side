@@ -22,13 +22,15 @@ const Category = () => {
     return (
         <div className="text-center pb-20">
             <h2 className="text-2xl font-bold">Shop by category</h2>
-            <div className="flex justify-center gap-6 mt-6">
+            
+            {/* Responsive Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-6 w-full max-w-[500px] sm:max-w-4xl mx-auto">
                 {categories.map(category => (
                     <div key={category.id} className="text-center">
-                        <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-md">
-                            <img src={category.img} alt={category.name} className="w-20 h-20 object-contain rounded-full" />
+                        <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full flex items-center justify-center shadow-md mx-auto">
+                            <img src={category.img} alt={category.name} className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-full" />
                         </div>
-                        <p className="mt-2 text-gray-600">22 Item</p>
+                        <p className="mt-2 text-gray-600 text-sm sm:text-base">22 Item</p>
                     </div>
                 ))}
             </div>
@@ -37,3 +39,4 @@ const Category = () => {
 };
 
 export default Category;
+

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import banner1 from '../../../assets/banner1.png';
-import banner2 from '../../../assets/banner2.png'; // Corrected file name
-import banner3 from '../../../assets/banner3.png'; // Corrected file name
+import banner1 from '../../../assets/01.jpg';
+import banner2 from '../../../assets/02.jpg';
+import banner3 from '../../../assets/03.png'; 
 
 const Banner = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,11 +25,11 @@ const Banner = () => {
 
     return (
         <div className="relative">
-            <div className="w-full h-[300px] md:h-[600px] overflow-hidden">
+            <div className="w-full h-[300px] md:h-[700px] overflow-hidden">
                 <img
                     src={banners[currentIndex]}
                     alt="Banner"
-                    className="w-full h-full object-cover transition-all duration-500"
+                    className="w-full h-full  transition-all duration-500"
                 />
             </div>
             {/* Left Arrow */}
