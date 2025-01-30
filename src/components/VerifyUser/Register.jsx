@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const {
@@ -13,7 +14,7 @@ export default function Register() {
 
   return (
     <div className="flex justify-center items-center md:mt-28 px-4">
-      <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-3xl">
+      <div className="flex flex-col md:flex-row bg-white border border-gray-300 shadow-lg rounded-lg overflow-hidden w-full max-w-3xl">
         {/* Left Side Form */}
         <div className="w-full md:w-2/3 p-6 md:p-10">
           <h2 className="text-2xl font-semibold mb-2 text-center md:text-left">Create Account</h2>
@@ -64,7 +65,7 @@ export default function Register() {
         <div className="w-full md:w-1/3 bg-gray-50 flex flex-col items-center justify-center p-6 md:p-8">
           <p className="text-gray-700 text-sm">Already an account holder?</p>
           <button className="w-full border border-yellow-500 text-yellow-500 py-3 rounded-md mt-2 font-medium hover:bg-yellow-100 transition">
-            Log in
+            <Link to='/login'>Log in</Link>
           </button>
 
           <p className="text-gray-500 text-xs mt-6 text-center">

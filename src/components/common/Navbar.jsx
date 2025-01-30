@@ -10,6 +10,35 @@ import {
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+
+
+  const Links = (
+    <>
+    <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+            <Link to='/'>Home</Link>
+          </li>
+          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+            Shop
+          </li>
+          <li className="text-gray-700 hover:text-yellow-500cursor-pointer">
+            Category
+          </li>
+          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+            Blogs
+          </li>
+          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+            About
+          </li>
+          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer relative">
+            Buy Vegist
+            <span className="absolute -top-2 -right-4 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+              HOT
+            </span>
+          </li>
+          </>
+  )
+
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -61,7 +90,7 @@ const Navbar = () => {
                 </span>{" "}
                 |{" "}
                 <span className="hover:text-yellow-500 cursor-pointer">
-                  Login
+                <Link to='/login'>Login</Link>
                 </span>
               </p>
             </div>
@@ -94,27 +123,7 @@ const Navbar = () => {
         }`}
       >
         <ul className="flex flex-col space-y-2 py-4 px-4">
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            <Link to='/'>Home</Link>
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Shop
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500cursor-pointer">
-            Category
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Blogs
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            About
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer relative">
-            Buy Vegist
-            <span className="absolute -top-2 -right-4 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-              HOT
-            </span>
-          </li>
+          {Links}
         </ul>
       </div>
 
@@ -122,27 +131,7 @@ const Navbar = () => {
       <div className="hidden lg:flex justify-between items-center space-x-4 py-2 container mx-auto px-4">
         {/* Nav Links */}
         <ul className="flex space-x-6 items-center text-sm md:text-lg">
-        <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            <Link to='/'>Home</Link>
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Shop
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-          Category
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Blogs
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            About
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer relative">
-            Buy Vegist
-            <span className="absolute -top-2 -right-4 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-              HOT
-            </span>
-          </li>
+        {Links}
         </ul>
 
         {/* Hotline */}
