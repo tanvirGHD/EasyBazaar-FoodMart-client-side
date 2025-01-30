@@ -1,19 +1,35 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-
-export default function Register() {
+import { AuthContext } from "../../Providers/AuthProvider";
+import { useContext } from "react";
+import toast from "react-hot-toast";
+const Register = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { createUser } = useContext(AuthContext);
+
+
 
   const onSubmit = (data) => {
     console.log(data);
+    createUser(data.email, data.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        toast.success("User successfully registered!");
+        console.log("User created:", loggedUser);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.error("Error:", error);
+      });
   };
+  
 
   return (
-    <div className="flex justify-center items-center md:mt-28 px-4">
+    <div className="flex justify-center items-center md:mt-24 px-4">
       <div className="flex flex-col md:flex-row bg-white border border-gray-300 shadow-lg rounded-lg overflow-hidden w-full max-w-3xl">
         {/* Left Side Form */}
         <div className="w-full md:w-2/3 p-6 md:p-10">
@@ -39,6 +55,17 @@ export default function Register() {
                 placeholder="Email"
               />
               <p className="text-red-500 text-sm mt-1">{errors.email?.message}</p>
+            </div>
+
+            {/* Image URL Input */}
+            <div>
+              <label className="text-gray-600 text-sm block mb-1">Image URL</label>
+              <input
+                {...register("imageURL", { required: "Image URL is required" })}
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                placeholder="Image URL"
+              />
+              <p className="text-red-500 text-sm mt-1">{errors.imageURL?.message}</p>
             </div>
 
             <div>
@@ -77,3 +104,6 @@ export default function Register() {
     </div>
   );
 }
+
+
+export default Register;

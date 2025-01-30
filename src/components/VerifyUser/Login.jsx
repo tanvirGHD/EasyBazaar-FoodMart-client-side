@@ -1,5 +1,9 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import toast from "react-hot-toast";
+
 
 export default function Login() {
   const {
@@ -7,10 +11,24 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const {signIn} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log("Submitting:", data);
+    
+    signIn(data.email, data.password)
+      .then((result) => {
+        console.log("Login success:", result.user);
+        toast.success("Successfully logged in!"); 
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+        toast.error(error.message || "Login failed!"); 
+      });
   };
+  
 
   return (
     <div className="flex justify-center items-center md:mt-28 px-4 ">

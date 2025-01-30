@@ -8,36 +8,42 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
 
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
   const Links = (
     <>
-    <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            <Link to='/'>Home</Link>
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Shop
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500cursor-pointer">
-            Category
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Blogs
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            About
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer relative">
-            Buy Vegist
-            <span className="absolute -top-2 -right-4 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-              HOT
-            </span>
-          </li>
-          </>
-  )
-
+      <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+        <Link to="/">Home</Link>
+      </li>
+      <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+        Shop
+      </li>
+      <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+        <Link to='/category'>Category</Link>
+      </li>
+      <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+        Blogs
+      </li>
+      <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+        About
+      </li>
+      <li className="text-gray-700 hover:text-yellow-500 cursor-pointer relative">
+        Buy Vegist
+        <span className="absolute -top-2 -right-4 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+          HOT
+        </span>
+      </li>
+    </>
+  );
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -70,7 +76,7 @@ const Navbar = () => {
             placeholder="Search our store"
             className="w-full border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none"
           />
-          <button className="bg-gray-200 px-3 py-2 rounded-r-lg text-gray-600  hover:bg-gray-300">
+          <button className="bg-gray-200 px-3 py-2 rounded-r-lg text-gray-600 hover:bg-gray-300">
             🔍
           </button>
         </div>
@@ -84,15 +90,26 @@ const Navbar = () => {
               <span className="text-gray-700 hidden md:inline text-sm md:text-base">
                 Account
               </span>
-              <p className="text-gray-500 text-xs">
-                <span className="hover:text-yellow-500 cursor-pointer">
-                <Link to='/register'>Register</Link>
-                </span>{" "}
-                |{" "}
-                <span className="hover:text-yellow-500 cursor-pointer">
-                <Link to='/login'>Login</Link>
-                </span>
-              </p>
+
+              {user ? (
+                <>
+                    <span className="hover:text-yellow-500 text-gray-500 text-xs cursor-pointer px-2">
+                      <Link onClick={handleLogOut}>LogOut</Link>
+                    </span>
+                </>
+              ) : (
+                <>
+                  <p className="text-gray-500 text-xs">
+                    <span className="hover:text-yellow-500 cursor-pointer">
+                      <Link to="/register">Register</Link>
+                    </span>{" "}
+                    |{" "}
+                    <span className="hover:text-yellow-500 cursor-pointer">
+                      <Link to="/login">Login</Link>
+                    </span>
+                  </p>
+                </>
+              )}
             </div>
           </div>
 
@@ -122,16 +139,14 @@ const Navbar = () => {
           isMenuOpen ? "block" : "hidden"
         }`}
       >
-        <ul className="flex flex-col space-y-2 py-4 px-4">
-          {Links}
-        </ul>
+        <ul className="flex flex-col space-y-2 py-4 px-4">{Links}</ul>
       </div>
 
       {/* Bottom Section */}
       <div className="hidden lg:flex justify-between items-center space-x-4 py-2 container mx-auto px-4">
         {/* Nav Links */}
         <ul className="flex space-x-6 items-center text-sm md:text-lg">
-        {Links}
+          {Links}
         </ul>
 
         {/* Hotline */}
