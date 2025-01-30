@@ -7,6 +7,7 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,7 +57,7 @@ const Navbar = () => {
               </span>
               <p className="text-gray-500 text-xs">
                 <span className="hover:text-yellow-500 cursor-pointer">
-                  Register
+                <Link to='/register'>Register</Link>
                 </span>{" "}
                 |{" "}
                 <span className="hover:text-yellow-500 cursor-pointer">
@@ -94,19 +95,19 @@ const Navbar = () => {
       >
         <ul className="flex flex-col space-y-2 py-4 px-4">
           <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Home
+            <Link to='/'>Home</Link>
           </li>
           <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
             Shop
           </li>
           <li className="text-gray-700 hover:text-yellow-500cursor-pointer">
-            Collection
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Pages
+            Category
           </li>
           <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
             Blogs
+          </li>
+          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+            About
           </li>
           <li className="text-gray-700 hover:text-yellow-500 cursor-pointer relative">
             Buy Vegist
@@ -121,20 +122,20 @@ const Navbar = () => {
       <div className="hidden lg:flex justify-between items-center space-x-4 py-2 container mx-auto px-4">
         {/* Nav Links */}
         <ul className="flex space-x-6 items-center text-sm md:text-lg">
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Home
+        <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+            <Link to='/'>Home</Link>
           </li>
           <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
             Shop
           </li>
           <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Collection
-          </li>
-          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-            Pages
+          Category
           </li>
           <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
             Blogs
+          </li>
+          <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
+            About
           </li>
           <li className="text-gray-700 hover:text-yellow-500 cursor-pointer relative">
             Buy Vegist
