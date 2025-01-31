@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
 import { FaHeart, FaCartPlus, FaEye } from "react-icons/fa";
-import { Rating } from "@smastrom/react-rating"; 
-
+import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
 const Categorys = () => {
   const [products, setProducts] = useState([]);
+  const [filters, setFilters] = useState({
+    priceRange: { min: 0, max: 100 },
+    sizes: [],
+    categories: [],
+    brands: [],
+    availability: [],
+  });
 
   // Fetch products from JSON file
   useEffect(() => {
@@ -23,34 +29,76 @@ const Categorys = () => {
     fetchProducts();
   }, []);
 
+  // Handle filter changes
+  const handleFilterChange = (filterType, value) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [filterType]: value,
+    }));
+  };
+
+  // Filter products based on selected criteria
+  const filteredProducts = products.filter((product) => {
+    return (
+      product.price >= filters.priceRange.min &&
+      product.price <= filters.priceRange.max &&
+      (filters.sizes.length === 0 || filters.sizes.some(size => product.sizes.includes(size))) &&
+      (filters.categories.length === 0 || filters.categories.includes(product.category)) &&
+      (filters.brands.length === 0 || filters.brands.includes(product.brand)) &&
+      (filters.availability.length === 0 || filters.availability.includes(product.stock > 0 ? "In stock" : "Out of stock"))
+    );
+  });
+
+  // Extract unique categories from products
+  const categories = [...new Set(products.map(product => product.category))];
+
   return (
     <div className="category-container flex space-x-6 p-6 overflow-hidden">
       {/* Categories and Filters Section */}
       <div className="categories-and-filters w-1/4 bg-white p-6 rounded-lg shadow-lg flex-shrink-0">
         <h1 className="text-2xl font-semibold mb-6">Categories</h1>
-        {["Fresh fruits", "Organic wine", "Organic juice", "Fresh meat"].map(
-          (category, index) => (
-            <div
-              key={index}
-              className="category-item py-2 px-4 my-2 bg-gray-50 rounded-lg hover:bg-gray-200 cursor-pointer transition"
-            >
-              <strong>{category}</strong>
-            </div>
-          )
-        )}
+        {categories.map((category, index) => (
+          <div
+            key={index}
+            className="category-item py-2 px-4 my-2 bg-gray-50 rounded-lg hover:bg-gray-200 cursor-pointer transition"
+            onClick={() => {
+              const newCategories = filters.categories.includes(category)
+                ? filters.categories.filter((c) => c !== category)
+                : [...filters.categories, category];
+              handleFilterChange("categories", newCategories);
+            }}
+          >
+            <strong>{category}</strong>
+          </div>
+        ))}
 
         {/* Filters Section */}
         <div className="filters mt-8">
+          {/* Price Range Filter */}
           <h2 className="text-xl font-semibold mb-4">Price Range</h2>
           <div className="price-range flex space-x-4">
             <input
               type="number"
               placeholder="From"
+              value={filters.priceRange.min}
+              onChange={(e) =>
+                handleFilterChange("priceRange", {
+                  ...filters.priceRange,
+                  min: parseInt(e.target.value, 10),
+                })
+              }
               className="w-1/2 p-2 border border-gray-300 rounded-lg"
             />
             <input
               type="number"
               placeholder="To"
+              value={filters.priceRange.max}
+              onChange={(e) =>
+                handleFilterChange("priceRange", {
+                  ...filters.priceRange,
+                  max: parseInt(e.target.value, 10),
+                })
+              }
               className="w-1/2 p-2 border border-gray-300 rounded-lg"
             />
           </div>
@@ -58,32 +106,20 @@ const Categorys = () => {
           {/* Size Filter */}
           <h2 className="text-xl font-semibold mt-6 mb-4">Size</h2>
           <div className="size-filter space-y-2">
-            {["1 kg", "2 kg", "3 kg", "5 kg"].map((size, index) => (
+            {["500ML", "1LTR", "2LTR", "5LTR", "10LTR"].map((size, index) => (
               <label key={index} className="flex items-center cursor-pointer">
-                <input type="checkbox" className="mr-2" />
+                <input
+                  type="checkbox"
+                  checked={filters.sizes.includes(size)}
+                  onChange={(e) => {
+                    const newSizes = e.target.checked
+                      ? [...filters.sizes, size]
+                      : filters.sizes.filter((s) => s !== size);
+                    handleFilterChange("sizes", newSizes);
+                  }}
+                  className="mr-2"
+                />
                 <strong>{size}</strong>
-              </label>
-            ))}
-          </div>
-
-          {/* Material Filter */}
-          <h2 className="text-xl font-semibold mt-6 mb-4">Material</h2>
-          <div className="material-filter space-y-2">
-            {["Canada", "Germany", "Greece", "India"].map((material, index) => (
-              <label key={index} className="flex items-center cursor-pointer">
-                <input type="checkbox" className="mr-2" />
-                <strong>{material}</strong>
-              </label>
-            ))}
-          </div>
-
-          {/* Brand Filter */}
-          <h2 className="text-xl font-semibold mt-6 mb-4">Brand</h2>
-          <div className="brand-filter space-y-2">
-            {["Vegiat", "Retail"].map((brand, index) => (
-              <label key={index} className="flex items-center cursor-pointer">
-                <input type="checkbox" className="mr-2" />
-                <strong>{brand}</strong>
               </label>
             ))}
           </div>
@@ -93,7 +129,17 @@ const Categorys = () => {
           <div className="availability-filter space-y-2">
             {["In stock", "Out of stock"].map((availability, index) => (
               <label key={index} className="flex items-center cursor-pointer">
-                <input type="checkbox" className="mr-2" />
+                <input
+                  type="checkbox"
+                  checked={filters.availability.includes(availability)}
+                  onChange={(e) => {
+                    const newAvailability = e.target.checked
+                      ? [...filters.availability, availability]
+                      : filters.availability.filter((a) => a !== availability);
+                    handleFilterChange("availability", newAvailability);
+                  }}
+                  className="mr-2"
+                />
                 <strong>{availability}</strong>
               </label>
             ))}
@@ -103,10 +149,10 @@ const Categorys = () => {
 
       {/* Products List Section */}
       <div className="product-list w-3/4 bg-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-6">{products.length} Products</h2>
+        <h2 className="text-2xl font-bold mb-6">{filteredProducts.length} Products</h2>
         <div className="product-items grid grid-cols-3 gap-6">
-          {products.length > 0 ? (
-            products.map((product) => (
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
               <div
                 key={product.id}
                 className="product-card bg-white rounded-lg overflow-hidden hover:shadow-xl transition-all"
@@ -136,16 +182,16 @@ const Categorys = () => {
                   </p>
                   <div className="flex items-center">
                     <Rating
-                      value={product.rating} // Set product's rating
-                      readOnly // Makes it non-interactive
-                      className="text-yellow-400 h-6 w-7 mr-25 md:mr-44" 
+                      value={product.rating}
+                      readOnly
+                      className="text-yellow-400 h-6 w-7 mr-25 md:mr-44"
                     />
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <p>Loading products...</p>
+            <p>No products match the selected filters.</p>
           )}
         </div>
       </div>

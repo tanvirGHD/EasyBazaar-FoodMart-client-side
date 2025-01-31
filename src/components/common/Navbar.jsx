@@ -31,10 +31,10 @@ const Navbar = () => {
         <Link to='/category'>Category</Link>
       </li>
       <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-        Blogs
+      <Link to='/blogs'>Blogs</Link>
       </li>
       <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
-        About
+        <Link to='/about'>About</Link>
       </li>
       <li className="text-gray-700 hover:text-yellow-500 cursor-pointer relative">
         Buy Vegist
