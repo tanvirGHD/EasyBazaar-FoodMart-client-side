@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import app from "../firebase/firebase.config";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 
 // Create AuthContext
 export const AuthContext = createContext(null);
@@ -32,6 +32,12 @@ const AuthProvider = ( {children} ) => {
 };
 
 
+const updateUserProfile = (name, photo) => {
+  return updateProfile(auth.currentUser, {
+      displayName:name,
+      photoURL: photo
+  })
+}
 
 
   // Check for authenticated user on initial load
@@ -50,9 +56,9 @@ const AuthProvider = ( {children} ) => {
     loading,
     createUser,
     signIn,
-    logOut
-  };
-
+    logOut,
+    updateUserProfile 
+  }
   return (
     <AuthContext.Provider value={authInfo}>
       {children}

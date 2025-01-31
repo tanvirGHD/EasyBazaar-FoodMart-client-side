@@ -36,12 +36,12 @@ const Navbar = () => {
       <li className="text-gray-700 hover:text-yellow-500 cursor-pointer">
         <Link to='/about'>About</Link>
       </li>
-      <li className="text-gray-700 hover:text-yellow-500 cursor-pointer relative">
+      {/* <li className="text-gray-700 hover:text-yellow-500 cursor-pointer relative">
         Buy Vegist
         <span className="absolute -top-2 -right-4 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
           HOT
         </span>
-      </li>
+      </li> */}
     </>
   );
 

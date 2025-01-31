@@ -11,6 +11,7 @@ const Categorys = () => {
     categories: [],
     brands: [],
     availability: [],
+    weights: [],  // Added weight filter
   });
 
   // Fetch products from JSON file
@@ -42,10 +43,11 @@ const Categorys = () => {
     return (
       product.price >= filters.priceRange.min &&
       product.price <= filters.priceRange.max &&
-      (filters.sizes.length === 0 || filters.sizes.some(size => product.sizes.includes(size))) &&
+      (filters.sizes.length === 0 || filters.sizes.some(size => product.sizes && product.sizes.includes(size))) &&
       (filters.categories.length === 0 || filters.categories.includes(product.category)) &&
       (filters.brands.length === 0 || filters.brands.includes(product.brand)) &&
-      (filters.availability.length === 0 || filters.availability.includes(product.stock > 0 ? "In stock" : "Out of stock"))
+      (filters.availability.length === 0 || filters.availability.includes(product.stock > 0 ? "In stock" : "Out of stock")) &&
+      (filters.weights.length === 0 || filters.weights.includes(product.weight)) // Added weight filter condition
     );
   });
 
@@ -55,7 +57,7 @@ const Categorys = () => {
   return (
     <div className="category-container flex space-x-6 p-6 overflow-hidden">
       {/* Categories and Filters Section */}
-      <div className="categories-and-filters w-1/4 bg-white p-6 rounded-lg shadow-lg flex-shrink-0">
+      <div className="categories-and-filters w-1/5 bg-white p-6 rounded-lg shadow-lg flex-shrink-0">
         <h1 className="text-2xl font-semibold mb-6">Categories</h1>
         {categories.map((category, index) => (
           <div
@@ -103,23 +105,23 @@ const Categorys = () => {
             />
           </div>
 
-          {/* Size Filter */}
-          <h2 className="text-xl font-semibold mt-6 mb-4">Size</h2>
-          <div className="size-filter space-y-2">
-            {["500ML", "1LTR", "2LTR", "5LTR", "10LTR"].map((size, index) => (
+          {/* Weight (KG) Filter */}
+          <h2 className="text-xl font-semibold mt-6 mb-4">Weight (KG)</h2>
+          <div className="weight-filter space-y-2">
+            {["1", "2", "3", "5", "10"].map((weight, index) => (
               <label key={index} className="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
-                  checked={filters.sizes.includes(size)}
+                  checked={filters.weights.includes(weight)}
                   onChange={(e) => {
-                    const newSizes = e.target.checked
-                      ? [...filters.sizes, size]
-                      : filters.sizes.filter((s) => s !== size);
-                    handleFilterChange("sizes", newSizes);
+                    const newWeights = e.target.checked
+                      ? [...filters.weights, weight]
+                      : filters.weights.filter((w) => w !== weight);
+                    handleFilterChange("weights", newWeights);
                   }}
                   className="mr-2"
                 />
-                <strong>{size}</strong>
+                <strong>{weight} KG</strong>
               </label>
             ))}
           </div>

@@ -8,11 +8,7 @@ const MainLayout = () => {
     <>
       <Navbar></Navbar>
 
-      <div
-        className={`${
-          location.pathname === "/" ? "w-full" : "md:w-10/12 w-10/12"
-        } mx-auto`}
-      >
+      <div className={`${location.pathname === "/" ? "w-full" : "max-w-7xl"} mx-auto`}>
         <Outlet></Outlet>
       </div>
       <div className="mt-36">
