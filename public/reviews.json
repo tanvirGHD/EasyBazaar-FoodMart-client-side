@@ -1,32 +1,62 @@
 [
     {
-        "_id": "643010e0f5a7e52ce1e8fa65",
-        "name": "Jane Doe",
-        "details": "Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-        "rating": 3
-    },
-    {
-        "_id": "643010f9f5a7e52ce1e8fa66",
-        "name": "John Doe",
-        "details": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)",
-        "rating": 2
-    },
-    {
-        "_id": "6430110af5a7e52ce1e8fa67",
-        "name": "MJ Doe",
-        "details": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)",
-        "rating": 5
-    },
-    {
-        "_id": "64301123f5a7e52ce1e8fa68",
-        "name": "Sarah Smith",
-        "details": "I found the product to be incredibly useful and easy to use. The interface is intuitive, and it has all the features I need. Highly recommend it!",
+        "_id": "6430115bf5a7e52ce1e8fa70",
+        "name": "Emily Brown",
+        "details": "The glossary website is easy to navigate and well-organized. The search function works smoothly, but some definitions could be more detailed. Adding real-life examples and images would improve the experience. It’s a great resource for students and professionals, but regular updates with new terms would make it even better.",
         "rating": 4
     },
     {
-        "_id": "6430113af5a7e52ce1e8fa69",
-        "name": "Robert Johnson",
-        "details": "This is by far the best service I have ever used. The customer support is outstanding, and the product itself is top-notch. I couldn't be happier!",
+        "_id": "6430116df5a7e52ce1e8fa71",
+        "name": "David Wilson",
+        "details": "This glossary website is a useful reference tool. The content is well-structured, but some definitions need more clarity. Adding pronunciation guides and updated explanations would help beginners. The mobile version works well, making it convenient for quick lookups. Despite minor issues, the site is a great resource with room for improvement.",
+        "rating": 3
+    },
+    {
+        "_id": "6430117ef5a7e52ce1e8fa72",
+        "name": "Sophia Martinez",
+        "details": "I use this glossary daily, and it’s very helpful. The search function is fast, and the terms are well-organized. The addition of synonyms and related terms makes learning easier. A user-contributed example section would improve it. The interface is modern and clean, making it an excellent resource for quick reference.",
+        "rating": 5
+    },
+    {
+        "_id": "6430118ff5a7e52ce1e8fa73",
+        "name": "Daniel Lee",
+        "details": "The website is useful but could be improved with simplified explanations for beginners. A ‘Word of the Day’ feature or interactive quizzes would increase engagement. While the site loads quickly, better categorization of terms is needed. With some refinements, this could become one of the best online glossary resources available.",
+        "rating": 3
+    },
+    {
+        "_id": "643011a0f5a7e52ce1e8fa74",
+        "name": "Olivia White",
+        "details": "This glossary has been essential for my studies. The definitions are clear and easy to understand. Historical context for some terms adds depth. Example sentences for each definition would be a helpful addition. The mobile experience is excellent, and frequent updates keep it relevant. I highly recommend it to students and professionals.",
+        "rating": 5
+    },
+    {
+        "_id": "643011b1f5a7e52ce1e8fa75",
+        "name": "William Harris",
+        "details": "The website is helpful, but some words lack detailed explanations. The search function works well, but adding autocomplete suggestions would improve usability. Certain terms need updates to avoid outdated information. A user feedback section could enhance content quality. Despite minor flaws, the site is visually appealing and valuable for quick reference.",
+        "rating": 4
+    },
+    {
+        "_id": "643011c2f5a7e52ce1e8fa76",
+        "name": "Ava Johnson",
+        "details": "This website is fantastic! Definitions are well-researched and easy to understand. The ‘Related Terms’ section is especially useful. A pronunciation feature would make it even better. The site is free from ads, making it user-friendly. Whether you're a student, writer, or researcher, this is a great resource for quick and accurate information.",
+        "rating": 5
+    },
+    {
+        "_id": "643011d3f5a7e52ce1e8fa77",
+        "name": "James Miller",
+        "details": "This glossary website is well-organized and informative. Some definitions need more real-world examples. A section for trending words or newly coined terms would be helpful. The site is fast and responsive on all devices. With regular updates and additional features, it could become one of the top glossary websites available online.",
+        "rating": 4
+    },
+    {
+        "_id": "643011e4f5a7e52ce1e8fa78",
+        "name": "Mia Davis",
+        "details": "The website is good, but searching for specific terms can be difficult. Adding filters or categories would help. Some definitions are too brief and need more context. The clean design and ad-free experience make browsing pleasant. Despite minor flaws, it remains a valuable tool for quick and reliable definitions.",
+        "rating": 3
+    },
+    {
+        "_id": "643011f5f5a7e52ce1e8fa79",
+        "name": "Benjamin Wilson",
+        "details": "This glossary website provides concise, well-structured definitions. The search function is efficient, and the related terms feature is helpful. An option to bookmark frequently searched words would be useful. The site is visually appealing and easy to use. Overall, it's a reliable and valuable resource for students and professionals alike.",
         "rating": 5
     }
 ]

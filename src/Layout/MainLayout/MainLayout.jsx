@@ -7,7 +7,6 @@ const MainLayout = () => {
   return (
     <>
       <Navbar></Navbar>
-
       <div className={`${location.pathname === "/" ? "w-full" : "max-w-7xl"} mx-auto`}>
         <Outlet></Outlet>
       </div>

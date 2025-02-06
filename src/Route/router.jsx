@@ -6,6 +6,8 @@ import Login from "../components/VerifyUser/Login";
 import Categorys from "../pages/routepages/Categorys";
 import About from "../pages/About/About";
 import Blogs from "../pages/Blogs/Blogs";
+import Secret from "../pages/routepages/Secret";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +22,10 @@ const router = createBrowserRouter([
             {
               path:'category',
               element: <Categorys></Categorys>
+            }, 
+            {
+              path:'secret',
+              element: <PrivateRoutes><Secret></Secret></PrivateRoutes>
             }, 
             {
               path:'register',
