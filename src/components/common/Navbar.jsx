@@ -88,7 +88,17 @@ const Navbar = () => {
         <div className="flex items-center space-x-4 md:space-x-6">
           {/* Account */}
           <div className="flex items-center space-x-1">
-            <FaUserAlt className="text-gray-700 h-6 w-6 md:h-8 md:w-8" />
+            {
+              user ? <>
+                <Link to='/'>
+                <img className="h-6 mr-2 w-6 md:h-12 md:w-12 rounded-full" src={user?.photoURL} alt="" />
+                </Link>
+              </>
+              :
+              <>
+               <FaUserAlt className="text-gray-700 h-6 w-6 md:h-8 md:w-8" />        
+              </>
+            }
             <div className="flex flex-col items-start">
               <span className="text-gray-700 hidden md:inline text-sm md:text-base">
                 Account
@@ -131,6 +141,7 @@ const Navbar = () => {
               0
             </span>
           </div>
+
         </div>
       </div>
 

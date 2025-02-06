@@ -5,16 +5,64 @@ import { Rating } from "@smastrom/react-rating"; // Importing the Rating compone
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@smastrom/react-rating/style.css"; // Import styles for the rating component
+import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-const TrendingProducts = () => {
+const OurProducts = () => {
+  const {user} = useAuth();
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    fetch("/products.json")
+    fetch("http://localhost:5000/products")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
+
+
+  const handleAddToCart =  (product) => {
+    if(user && user.email){
+      //TODO: send cart item to the database
+      const cartItem = {
+        menuId: product._id, 
+        email: user.email,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        weight: product.weight,
+    };
+      axios.post('http://localhost:5000/carts', cartItem)
+      .then(res =>{
+        console.log(res.data)
+        if(res.data.insertedId){
+          toast.success(`${product.name} added to your cart`);
+        }
+      })
+    }
+    else{
+      Swal.fire({
+        title: "You are not Logged In?",
+        text: "Please login to add to the cart?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, login!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+         // sent the user to the login page 
+         navigate('/login', {sate: {from: location}});
+        }
+      });
+    }
+  }
+
 
   // Slice the first 6 products
   const remainingProducts = products.slice(6);
@@ -70,13 +118,16 @@ const TrendingProducts = () => {
                                 className="w-full h-60 object-cover"
                               />
                               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-opacity-50 p-2 rounded-md">
-                                <button className="p-2 bg-white rounded-full text-xl text-gray-700 hover:text-red-500">
+                                <button className="p-2 cursor-pointer bg-white rounded-full text-xl text-gray-700 hover:text-red-500">
                                   <FaHeart />
                                 </button>
-                                <button className="p-2 bg-white rounded-full text-xl text-gray-700 hover:text-green-500">
+                                {/* add card */}
+                                <button
+                                  onClick={() => handleAddToCart(product)}
+                                 className="p-2 cursor-pointer bg-white rounded-full text-xl text-gray-700 hover:text-green-500">
                                   <FaCartPlus />
                                 </button>
-                                <button className="p-2 bg-white rounded-full text-xl text-gray-700 hover:text-blue-500">
+                                <button className="p-2 cursor-pointer bg-white rounded-full text-xl text-gray-700 hover:text-blue-500">
                                   <FaEye />
                                 </button>
                               </div>
@@ -110,4 +161,4 @@ const TrendingProducts = () => {
   );
 };
 
-export default TrendingProducts;
+export default OurProducts;

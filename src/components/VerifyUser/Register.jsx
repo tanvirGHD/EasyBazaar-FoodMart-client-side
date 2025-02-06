@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useContext } from "react";
 import toast from "react-hot-toast";
@@ -7,9 +7,10 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const { createUser, } = useContext(AuthContext);
+  const { createUser, updateUserProfile} = useContext(AuthContext);
   const navigate = useNavigate();
 
 
@@ -19,14 +20,19 @@ const Register = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
-        toast.success("User successfully registered!");
-        navigate('/');
+        updateUserProfile(data.name, data.imageURL)
+        .then(() =>{
+          console.log('user profile info updated')
+          reset();
+          toast.success("User successfully registered!");
+          navigate('/');
+        })
+        .catch((error) => {
+          toast.error(error.message);
+          console.error("Error:", error);
+        });
         console.log("User created:", loggedUser);
       })
-      .catch((error) => {
-        toast.error(error.message);
-        console.error("Error:", error);
-      });
   };
   
 
@@ -39,16 +45,18 @@ const Register = () => {
           <p className="text-gray-500 text-sm mb-6 text-center md:text-left">Please register below account detail</p>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* User name */}
             <div>
               <label className="text-gray-600 text-sm block mb-1">First Name</label>
               <input
-                {...register("firstName", { required: "First Name is required" })}
+                {...register("name", { required: "First Name is required" })}
                 className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 placeholder="First Name"
               />
-              <p className="text-red-500 text-sm mt-1">{errors.firstName?.message}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.name?.message}</p>
             </div>
 
+            {/* User email */}
             <div>
               <label className="text-gray-600 text-sm block mb-1">Email</label>
               <input
@@ -70,6 +78,7 @@ const Register = () => {
               <p className="text-red-500 text-sm mt-1">{errors.imageURL?.message}</p>
             </div>
 
+            {/* Password */}
             <div>
               <label className="text-gray-600 text-sm block mb-1">Password</label>
               <input
